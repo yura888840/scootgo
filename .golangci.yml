@@ -1,0 +1,124 @@
+version: "2"
+
+linters:
+  default: none
+  enable:
+    - bodyclose
+    - depguard
+    - dogsled
+    - dupl
+    - errcheck
+    - err113
+    - funlen
+    - gochecknoinits
+    - gocritic
+    - goconst
+    - gocyclo
+    - goprintffuncname
+    - gosec
+    - govet
+    - ineffassign
+    - lll
+    - makezero
+    - mnd
+    - nakedret
+    - noctx
+    - nolintlint
+    - prealloc
+    - revive
+    - staticcheck
+    - tparallel
+    - unconvert
+    - unparam
+    - unused
+    - whitespace
+
+  settings:
+    depguard:
+      rules:
+        logger:
+          deny:
+            - pkg: "github.com/sirupsen/logrus"
+              desc: logging is allowed only by zerolog (github.com/rs/zerolog)
+    dupl:
+      threshold: 100
+    funlen:
+      lines: -1
+      statements: 50
+    goconst:
+      min-len: 2
+      min-occurrences: 3
+    gocritic:
+      enabled-tags:
+        - diagnostic
+        - experimental
+        - opinionated
+        - performance
+        - style
+      disabled-checks:
+        - dupImport
+        - ifElseChain
+        - octalLiteral
+        - whyNoLint
+    gocyclo:
+      min-complexity: 15
+    govet:
+      enable:
+        - shadow
+    lll:
+      line-length: 140
+    misspell:
+      locale: US
+    mnd:
+      checks:
+        - argument
+        - case
+        - condition
+        - return
+      ignored-numbers:
+        - '0'
+        - '1'
+        - '2'
+        - '3'
+      ignored-functions:
+        - strings.SplitN
+    nolintlint:
+      allow-unused: false
+      require-explanation: false
+      require-specific: true
+    revive:
+      rules:
+        - name: unexported-return
+          disabled: true
+        - name: unused-parameter
+
+  exclusions:
+    paths:
+      - test/testdata_etc
+      - internal/cache
+      - internal/renameio
+      - internal/robustio
+    rules:
+      - path: _test\.go
+        linters:
+          - mnd
+
+formatters:
+  enable:
+    - gofmt
+    - goimports
+  settings:
+    gofmt:
+      rewrite-rules:
+        - pattern: 'interface{}'
+          replacement: 'any'
+    goimports:
+      local-prefixes:
+        - github.com/yura888840/scootgo`
+
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
+
+run:
+  timeout: 5m

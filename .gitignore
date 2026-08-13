@@ -1,0 +1,11 @@
+.vscode
+.idea
+.DS_Store
+._*
+*.sw[po]
+__debug_bin
+
+.env.secrets
+
+### Git worktrees
+.worktrees/
