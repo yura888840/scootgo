@@ -90,7 +90,6 @@ Run tests:
 make test
 ```
 
-This runs the maintained boilerplate/unit packages.
 
 Format code:
 
@@ -104,7 +103,7 @@ Run linter:
 make lint
 ```
 
-## Extend the boilerplate
+## Extend the application
 
 - Add new HTTP routes under `pkg/app/handler`
 - Add new commands under `pkg/app/command`
