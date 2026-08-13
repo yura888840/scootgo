@@ -1,7 +1,8 @@
 # scootgo
 
-Generic Go service boilerplate with three runnable entry points:
+API Gateway → User Service → Scooter Service → Ride Service → Payment Service → Kafka/NATS → PostgreSQL
 
+runnable entry points:
 - HTTP server via `serve`
 - sample CLI command via `exec`
 - sample RabbitMQ consumer via `consume`
