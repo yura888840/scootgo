@@ -15,6 +15,7 @@ import (
 	apphandler "github.com/yura888840/scootgo/pkg/app/handler"
 	"github.com/yura888840/scootgo/pkg/config"
 	"github.com/yura888840/scootgo/pkg/healthcheck"
+	"github.com/yura888840/scootgo/pkg/ride"
 	"github.com/yura888840/scootgo/pkg/tracing"
 )
 
@@ -58,6 +59,7 @@ func serve(
 	router.Use(gzip.Gzip(gzip.DefaultCompression))
 
 	apphandler.NewRouter().Routes(router, configs)
+	ride.CreateNewRouter(log).SetupRoutes(router)
 
 	port := configs[config.ConfigAppPort]
 	address := fmt.Sprintf(":%s", port)

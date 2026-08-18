@@ -9,19 +9,19 @@ type Router struct {
 	logger *zerolog.Logger
 }
 
-func (r *Router) CreateNewRouter(logger *zerolog.Logger) *Router {
+func CreateNewRouter(logger *zerolog.Logger) *Router {
 	return &Router{
 		logger: logger,
 	}
 }
-
-func NewRideUC(c *gin.Context) {
-
-}
-
 func (r *Router) SetupRoutes(routesEngine *gin.Engine) error {
-	group := routesEngine.Group("/ride")
+	group := routesEngine.Group("/api/v1/ride")
+	h := SetupRideHandler(r.logger)
 
-	group.GET("/new", NewRideUC)
+	group.POST("/start", h.StartRide)
+	group.POST("/end", h.EndRide)
+	group.GET("/current", h.GetRide)
+	group.GET("/list", h.ListMyRides)
+
 	return nil
 }
