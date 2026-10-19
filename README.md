@@ -1,4 +1,4 @@
-# scootgo
+# scootgo (WIP)
 
 API Gateway → User Service → Scooter Service → Ride Service → Payment Service → Kafka/NATS → PostgreSQL
 
