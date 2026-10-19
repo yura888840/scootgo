@@ -3,7 +3,7 @@ BUILD_DIR=build
 SRC=./pkg
 GO=go
 BATCH_SIZE?=1
-TEST_PACKAGES := $(shell $(GO) list -tags=mysql ./pkg/... | grep -vE '/pkg/(ridetest)(/|$$)')
+TEST_PACKAGES := $(shell $(GO) list -tags=mysql ./... | grep -vE '/pkg/(ridetest)(/|$$)')
 
 -include .env.secrets
 
@@ -46,7 +46,7 @@ test:
 .PHONY: fmt
 fmt:
 	@echo "Formatting code..."
-	$(GO) fmt $(SRC)/...
+	$(GO) fmt ./...
 
 # Clean up build artifacts
 .PHONY: clean
